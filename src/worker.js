@@ -1,12 +1,18 @@
 /**
- * Experimental code to run a RAiD resolver by piggybacking the DOI resolver with a Cloudflare worker
+ * Welcome to Cloudflare Workers! This is your first worker.
+ *
+ * - Run "npm run dev" in your terminal to start a development server
+ * - Open a browser tab at http://localhost:8787/ to see your worker in action
+ * - Run "npm run deploy" to publish your worker
+ *
+ * Learn more at https://developers.cloudflare.com/workers/
  */
 
 const DOI_HOST = "doi.org"
 const RAID_HOST = "raid.org"
 
 async function handleRequest(request, ctx) {
-  const raidRegex = "^/\\/102?\\.\\d+(\\..*)?\\/.+$/g"
+  const raidRegex = new RegExp(`\/102?\.\d+(\..*)?\/.+`)
   const raidString = "/10"
   const url = new URL(request.url)
   const pathname = url.pathname
