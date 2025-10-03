@@ -1,6 +1,10 @@
 
 {
-"name": "raid-cf-resolver-mpfl",
-"compatibility_date": "2025-10-03",
- "main": "src/worker.js"
+    "name": "raid-cf-resolver-mpfl",
+    "compatibility_date": "2025-10-03",
+    "main": "src/worker.js",
+    "route": {
+      "pattern": "raid.thisshould.work",
+      "custom_domain": true
+    }
 }
