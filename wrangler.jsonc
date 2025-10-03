@@ -1,0 +1,6 @@
+
+{
+"name": "raid-cf-resolver-mpfl",
+"compatibility_date": "2025-10-03",
+ "main": "src/worker.js"
+}
