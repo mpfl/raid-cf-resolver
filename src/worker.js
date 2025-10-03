@@ -11,8 +11,8 @@
 const DOI_HOST = "doi.org"
 const RAID_HOST = "raid.org"
 
-async function handleRequest(request, ctx) {
-  const raidRegex = new RegExp(`\/102?\.\d+(\..*)?\/.+`)
+async function handleRequest(request) {
+  const raidRegex = new RegExp(/^\/102?\.\d+(\..*)?\/.+$/g)
   const raidString = "/10"
   const url = new URL(request.url)
   const pathname = url.pathname
@@ -22,8 +22,8 @@ async function handleRequest(request, ctx) {
   // console.log("Regex:", raidRegex)
   // console.log("Regex matches:", pathname.match(raidRegex))
   // console.log("Starts with:", pathname.startsWith(raidString))
-  // if (pathname.match(raidRegex)) {
-  if (pathname.match(raidString)) {
+  if (pathname.match(raidRegex)) {
+  // if (pathname.startsWith(raidString)) {
       return retrieveDOI(pathWithParams)
   } else {
       return retrieveRAID(pathWithParams)
