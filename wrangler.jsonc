@@ -9,7 +9,7 @@
       "html_handling": "drop-trailing-slash"
     },
     "route": {
-      "pattern": "raid.thisshould.work",
+      "pattern": "raid.thisshould.work/*",
       "custom_domain": true
     }
 }
