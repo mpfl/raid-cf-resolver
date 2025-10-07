@@ -1,8 +1,13 @@
 
 {
     "name": "raid-cf-resolver-mpfl",
-    "compatibility_date": "2025-10-03",
+    "compatibility_date": "2025-10-07",
     "main": "src/worker.js",
+    "assets": {
+      "directory": "./dist/",
+      "not_found_handling": "404-page",
+      "html_handling": "drop-trailing-slash"
+    },
     "route": {
       "pattern": "raid.thisshould.work",
       "custom_domain": true
