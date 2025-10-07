@@ -22,11 +22,14 @@ async function handleRequest(request) {
 async function retrieveDOI(pathname) {
   const response = await fetch(`https://${DOI_HOST}${pathname}`)
   if (response.redirected && !response.url.startsWith("https://doi.org")) {
+    console.log({outcome:301})
     return Response.redirect(response.url, 301)
   } else if ( response.status == 404) {
-    return env.ASSETS.fetch(new URL('https://assets.local/404.html'))
+    console.log({outcome:404})
+    return env.ASSETS.fetch('https://assets.local/404.html')
   }
-  return response
+  console.log({outcome:200})
+  return Response.redirect(`https://${RAID_HOST}`, 301)
 }
 
 async function retrieveRAID(pathname) {
