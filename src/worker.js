@@ -24,7 +24,7 @@ async function retrieveDOI(pathname) {
   if (response.redirected && !response.url.startsWith("https://doi.org")) {
     return Response.redirect(response.url, 301)
   } else if ( response.status == 404) {
-    return new Response("RAiD not found", {status: 404})
+    return env.ASSETS.fetch(request)
   }
   return response
 }
