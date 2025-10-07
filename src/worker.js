@@ -24,7 +24,7 @@ async function retrieveDOI(pathname) {
   if (response.redirected && !response.url.startsWith("https://doi.org")) {
     return Response.redirect(response.url, 301)
   } else if ( response.status == 404) {
-    let errorResponse = env.ASSETS.fetch(request)
+    let errorResponse = await env.ASSETS.fetch(request)
     return new Response(errorResponse.body, {status: 404})
   }
   return response
