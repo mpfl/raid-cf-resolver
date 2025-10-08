@@ -24,7 +24,7 @@ async function retrieveDOI(pathname) {
   if (response.redirected && !response.url.startsWith("https://doi.org")) {
     return Response.redirect(response.url, 301)
   } else if ( response.status == 404) {
-    return env.ASSETS.fetch('https://assets.local/404.html')
+    return env.ASSETS.fetch('https://assets.local/404.html', 404)
   }
   return Response.redirect(`https://${RAID_HOST}`, 301)
 }
