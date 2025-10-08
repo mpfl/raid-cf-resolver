@@ -5,7 +5,7 @@
 const DOI_HOST = "doi.org"
 const RAID_HOST = "raid.org"
 
-async function handleRequest(request) {
+async function handleRequest(request, env) {
   const raidRegex = new RegExp(/^\/102?\.\d+(\..*)?\/.+$/g)
   const raidString = "/10"
   const url = new URL(request.url)
@@ -13,13 +13,13 @@ async function handleRequest(request) {
   const search = url.search
   const pathWithParams = pathname + search
   if (pathname.match(raidRegex)) {
-      return retrieveDOI(pathWithParams)
+      return retrieveDOI(pathWithParams, env)
   } else {
-      return retrieveRAID(pathWithParams)
+      return retrieveRAID(pathWithParams, env)
   }
 }
 
-async function retrieveDOI(pathname) {
+async function retrieveDOI(pathname, env) {
   const response = await fetch(`https://${DOI_HOST}${pathname}`)
   if (response.redirected && !response.url.startsWith("https://doi.org")) {
     console.log({outcome:301})
@@ -32,12 +32,12 @@ async function retrieveDOI(pathname) {
   return Response.redirect(`https://${RAID_HOST}`, 301)
 }
 
-async function retrieveRAID(pathname) {
+async function retrieveRAID(pathname, env) {
   return Response.redirect(`https://${RAID_HOST}${pathname}`, 301)
 }
 
 export default {
-  async fetch(request) {
-    return handleRequest(request);
+  async fetch(request, env) {
+    return handleRequest(request, env);
   }
 };
